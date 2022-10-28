@@ -14,13 +14,13 @@ pipeline {
                 sh './gsc sign-image test_image-bash enclave-key.pem' 
             }
         }
-        stage('Deploy') { 
+       /* stage('Deploy') { 
             steps {
                 /* sh 'docker run --device=/dev/sgx_enclave \
                     -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
                     <gsc-image_name>-c ls' */
 
             }
-        }
+        }*/
     }
 }
