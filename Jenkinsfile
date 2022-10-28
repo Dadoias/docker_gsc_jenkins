@@ -13,10 +13,10 @@ pipeline {
                 sh './gsc sign-image test_image-bash enclave-key.pem' 
             }
         }
-        stage('Deploy') { 
+        /*stage('Deploy') { 
             steps {
                 // 
             }
-        }
+        }*/
     }
 }
