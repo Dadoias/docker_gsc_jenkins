@@ -37,8 +37,11 @@ pipeline {
         stage('Hello') {
             steps {
                 //sh 'ls'
+                if (${Select} == 'no SGX'){
                 echo 'Hello World'
+                }else{    
                 sh "docker run davideias/${Docker_Image}"
+                }
                 /*//sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
                 sh "git add ManifestFile"
                 sh "git commit -m ${ManifestFile}"
