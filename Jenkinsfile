@@ -36,10 +36,9 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                sh 'ls'
+                //sh 'ls'
                 echo 'Hello World'
                 sh "docker run davideias/${Docker_Image}"
-                sh 'ls'
                 /*//sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
                 sh "git add ManifestFile"
                 sh "git commit -m ${ManifestFile}"
