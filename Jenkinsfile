@@ -61,8 +61,8 @@ node {
                 //echo "params.Docker_Image"
             }
         }
-    }
-}*/
+    }*/
+}
 
 
 
