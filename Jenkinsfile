@@ -30,7 +30,18 @@ file(description: 'Select the manifest file to build docker container protected 
 ])])
 
 
-pipeline {
+node {
+    stage('Example') {
+        if ("${Select}" == 'no SGX'){
+            echo 'Hello World'
+        }else{    
+            sh "docker run davideias/${Docker_Image}"
+        }
+}
+
+
+
+/*pipeline {
     agent any
 
     stages {
@@ -42,7 +53,7 @@ pipeline {
                 }else{    
                 sh "docker run davideias/${Docker_Image}"
                 }
-                /*//sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
+                //sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
                 sh "git add ManifestFile"
                 sh "git commit -m ${ManifestFile}"
                 sh "git push -u origin main"*/
@@ -51,7 +62,7 @@ pipeline {
             }
         }
     }
-}
+}*/
 
 
 
