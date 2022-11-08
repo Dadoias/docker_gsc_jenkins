@@ -33,9 +33,14 @@ file(description: 'Select the manifest file to build docker container protected 
 node {
     stage('Example') {
         if ("${Select}" == 'no SGX'){
-            echo 'Hello World'
-        }else{    
             sh "docker run davideias/${Docker_Image}"
+        }else{    
+            echo 'Hello'
+            /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
+            sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
+            sh "docker run --device=/dev/sgx_enclave \
+                    -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
+                    gsc-${Docker_Image} -c ls"*/
         }
     }
 }
