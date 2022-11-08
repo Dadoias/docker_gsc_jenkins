@@ -37,6 +37,7 @@ node {
         }else{    
             sh "docker run davideias/${Docker_Image}"
         }
+    }
 }
 
 
@@ -61,8 +62,8 @@ node {
                 //echo "params.Docker_Image"
             }
         }
-    }*/
-}
+    }
+}*/
 
 
 
