@@ -37,7 +37,11 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                echo "${Docker_Image}"
+                sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
+                sh "git add ${ManifestFile}"
+                sh "git commit -m ${ManifestFile}"
+                sh "git push -u origin main"
+                //echo "${Docker_Image}"
                 //echo "params.Docker_Image"
             }
         }
