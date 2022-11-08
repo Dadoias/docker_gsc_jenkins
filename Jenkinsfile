@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 //sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
-                sh "git add ${ManifestFile}"
+                sh "git add ManifestFile"
                 sh "git commit -m ${ManifestFile}"
                 sh "git push -u origin main"
                 //echo "${Docker_Image}"
