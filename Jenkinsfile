@@ -26,7 +26,7 @@ try {
 
 [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', description: 'Build:', filterLength: 1, filterable: false, name: 'Select', randomName: 'choice-parameter-2632125668535', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: true, script: 'return [\'SGX\', \'no SGX\']']]],
 
-file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')
+//file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')
 ])])
 
 
@@ -37,9 +37,9 @@ node {
         }else{
             script {
           firstName = input (
-            message: 'What is your first name?', 
-            ok: 'Submit', 
-            parameters: [string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true)]
+            //message: 'What is your first name?', 
+            //ok: 'Submit', 
+            parameters: [file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
           )
         }
             echo "Hello ${firstName}"
