@@ -46,6 +46,10 @@ node {
             // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
             
+            withFileParameter('myFile.txt') {
+                sh 'cat myFile.txt'
+            }
+            
             //echo "Hello ${firstName}"
             /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
             sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
