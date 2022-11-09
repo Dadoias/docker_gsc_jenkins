@@ -36,8 +36,12 @@ node {
             sh "docker run davideias/${Docker_Image}"
         }else{
             def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
-            withEnv(["fileBase64=$fileBase64"]) {
-            sh "cat $fileBase64 | base64 -d"
+            
+            withFileParameter('file') {
+        sh 'cat $file'
+    }
+            //withEnv(["fileBase64=$fileBase64"]) {
+            //sh "cat $fileBase64 | base64 -d"
                 //sh 'echo $fileBase64 | base64 -d > myFile.txt'
             // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
