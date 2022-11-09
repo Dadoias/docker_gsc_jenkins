@@ -34,8 +34,15 @@ node {
     stage('Example') {
         if ("${Select}" == 'no SGX'){
             sh "docker run davideias/${Docker_Image}"
-        }else{    
-            echo 'Hello'
+        }else{
+            script {
+          firstName = input (
+            message: 'What is your first name?', 
+            ok: 'Submit', 
+            parameters: [string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true)]
+          )
+        }
+            echo "Hello ${firstName}"
             /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
             sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
             sh "docker run --device=/dev/sgx_enclave \
