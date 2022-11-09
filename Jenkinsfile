@@ -37,9 +37,9 @@ node {
         }else{
             def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
             
-            withFileParameter('file') {
-        sh 'cat $file'
-    }
+            withFileParameter('test.txt') {
+                sh 'cat test.txt'
+            }
             /*withEnv(["fileBase64=$fileBase64"]) {
             //sh "cat $fileBase64 | base64 -d"
                 //sh 'echo $fileBase64 | base64 -d > myFile.txt'
@@ -64,29 +64,5 @@ node {
     }
     // do something with the file stored in ./myFile.txt
 }*/
-
-/*pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                //sh 'ls'
-                if ("${Select}" == 'no SGX'){
-                echo 'Hello World'
-                }else{    
-                sh "docker run davideias/${Docker_Image}"
-                }
-                //sh "git remote add origin https://github.com/Dadoias/docker_gsc_jenkins.git"
-                sh "git add ManifestFile"
-                sh "git commit -m ${ManifestFile}"
-                sh "git push -u origin main"
-                //echo "${Docker_Image}"
-                //echo "params.Docker_Image"
-            }
-        }
-    }
-}*/
-
 
 
