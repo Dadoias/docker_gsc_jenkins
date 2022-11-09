@@ -36,7 +36,7 @@ node {
             sh "docker run davideias/${Docker_Image}"
         }else{
             script {
-          firstName = input (
+            def firstName = input (
             //message: 'What is your first name?', 
             //ok: 'Submit', 
             parameters: [file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
