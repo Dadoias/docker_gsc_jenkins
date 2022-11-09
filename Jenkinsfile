@@ -45,7 +45,7 @@ node {
             sh 'chmod -R 755 /home/davide/.jenkins/workspace/Active_choice_folder'
             sh "./gsc build --insecure-args ${image} ManifestFile.manifest"
             sh 'openssl genrsa -3 -out key.pem 3072'
-            sh "./gsc sign-image gsc-${image}-unsigned key.pem"
+            sh "./gsc sign-image ${image} key.pem"
             //sh "./gsc sign-image gsc-${image}-unsigned ${key}"
             /*sh "docker run --device=/dev/sgx_enclave \
                     -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
