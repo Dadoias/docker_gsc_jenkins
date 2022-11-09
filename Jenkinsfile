@@ -42,9 +42,11 @@ node {
                 // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
 
-            /*sh "./gsc build --insecure-args ${Docker_Image} ManifestFile.manifest"
-            sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
-            sh "docker run --device=/dev/sgx_enclave \
+            sh "./gsc build --insecure-args ${image} ManifestFile.manifest"
+            sh 'openssl genrsa -3 -out key.pem 3072'
+            sh "./gsc sign-image gsc-${image}-unsigned key.pem"
+            //sh "./gsc sign-image gsc-${image}-unsigned ${key}"
+            /*sh "docker run --device=/dev/sgx_enclave \
                     -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
                     gsc-${Docker_Image} -c ls"*/
         }
