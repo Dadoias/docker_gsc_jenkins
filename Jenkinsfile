@@ -29,12 +29,13 @@ try {
 //file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')
 ])])
 
-def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
+
 node {
     stage('Example') {
         if ("${Select}" == 'no SGX'){
             sh "docker run davideias/${Docker_Image}"
         }else{
+            def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
             withEnv(["fileBase64=$fileBase64"]) {
             sh 'echo $fileBase64 | base64 -d > myFile.txt'
             // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
