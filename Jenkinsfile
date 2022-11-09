@@ -36,7 +36,7 @@ node {
         if ("${Select}" == 'no SGX'){
             sh "docker run ${image}"
         }else{
-            def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
+            def fileBase64 = input message: 'Inserire ManifestFile per la configurazione del container', parameters: [base64File('file')]
             withEnv(["fileBase64=$fileBase64"]) {
                 sh 'base64 -d > ManifestFile.manifest'
                 // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
