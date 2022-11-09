@@ -37,7 +37,8 @@ node {
         }else{
             def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
             withEnv(["fileBase64=$fileBase64"]) {
-            sh 'echo $fileBase64 | base64 -d > myFile.txt'
+            sh "./$fileBase64"
+                //sh 'echo $fileBase64 | base64 -d > myFile.txt'
             // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
             
