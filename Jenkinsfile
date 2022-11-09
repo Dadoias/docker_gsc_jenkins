@@ -41,7 +41,8 @@ node {
                 sh 'base64 -d > ManifestFile.manifest'
                 // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
-
+            
+            sh 'chmod -R 755 /home/davide/.jenkins/workspace/Active_choice_folder'
             sh "./gsc build --insecure-args ${image} ManifestFile.manifest"
             sh 'openssl genrsa -3 -out key.pem 3072'
             sh "./gsc sign-image gsc-${image}-unsigned key.pem"
