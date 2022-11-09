@@ -35,9 +35,7 @@ node {
         if ("${Select}" == 'no SGX'){
             sh "docker run davideias/${Docker_Image}"
         }else{
-            script {
-            def firstName = parameters: [file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
-        }
+            def firstName = parameters: [base64File(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
             echo "Hello ${firstName}"
             /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
             sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
@@ -48,7 +46,14 @@ node {
     }
 }
 
-
+/*def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
+node {
+    withEnv(["fileBase64=$fileBase64"]) {
+        sh 'echo $fileBase64 | base64 -d > myFile.txt'
+        // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
+    }
+    // do something with the file stored in ./myFile.txt
+}*/
 
 /*pipeline {
     agent any
