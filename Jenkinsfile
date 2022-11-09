@@ -32,28 +32,17 @@ try {
 
 node {
     stage('Example') {
+        def image = "davideias/${Docker_Image}"
         if ("${Select}" == 'no SGX'){
-            sh "docker run davideias/${Docker_Image}"
+            sh "docker run ${image}"
         }else{
             def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
-            
-            /*withFileParameter('fileBase64') {
-                sh 'cat $fileBase64'
-            }*/
             withEnv(["fileBase64=$fileBase64"]) {
-                //sh "cat $fileBase64 | base64 -d"
-                sh 'echo $fileBase64 | base64 -d > myFile.txt'
+                sh 'base64 -d > ManifestFile.manifest'
                 // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
             }
-            sh 'cat myFile.txt'
-            
-           /* wrap([$delegate: parameters.myFileParam]) {
-                sh 'cat myFileParam'
-            }*/
 
-            
-            //echo "Hello ${firstName}"
-            /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
+            /*sh "./gsc build --insecure-args ${Docker_Image} ManifestFile.manifest"
             sh "./gsc sign-image gsc-${Docker_Image}-unsigned ${key}"
             sh "docker run --device=/dev/sgx_enclave \
                     -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
