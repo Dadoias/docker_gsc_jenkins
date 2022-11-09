@@ -35,19 +35,21 @@ node {
         if ("${Select}" == 'no SGX'){
             sh "docker run davideias/${Docker_Image}"
         }else{
-            def myFileParam = input message: 'Please provide a file', parameters: [base64File('file')]
+            def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
             
             /*withFileParameter('fileBase64') {
                 sh 'cat $fileBase64'
             }*/
-            /*withEnv(["fileBase64=$fileBase64"]) {
+            withEnv(["fileBase64=$fileBase64"]) {
                 //sh "cat $fileBase64 | base64 -d"
                 sh 'echo $fileBase64 | base64 -d > myFile.txt'
                 // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
-            }*/
-            wrap([$delegate: parameters.myFileParam]) {
-                sh 'cat myFileParam'
             }
+            sh 'cat myFile.txt'
+            
+           /* wrap([$delegate: parameters.myFileParam]) {
+                sh 'cat myFileParam'
+            }*/
 
             
             //echo "Hello ${firstName}"
