@@ -40,11 +40,11 @@ node {
             withFileParameter('file') {
         sh 'cat $file'
     }
-            //withEnv(["fileBase64=$fileBase64"]) {
+            /*withEnv(["fileBase64=$fileBase64"]) {
             //sh "cat $fileBase64 | base64 -d"
                 //sh 'echo $fileBase64 | base64 -d > myFile.txt'
             // powershell '[IO.File]::WriteAllBytes("myFile.txt", [Convert]::FromBase64String($env:fileBase64))'
-            }
+            }/*
             
             //echo "Hello ${firstName}"
             /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
