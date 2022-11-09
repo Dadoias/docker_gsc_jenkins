@@ -36,11 +36,7 @@ node {
             sh "docker run davideias/${Docker_Image}"
         }else{
             script {
-            def firstName = input (
-            //message: 'What is your first name?', 
-            //ok: 'Submit', 
-            parameters: [file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
-          )
+            def firstName = parameters: [file(description: 'Select the manifest file to build docker container protected by SGX', name: 'ManifestFile')]
         }
             echo "Hello ${firstName}"
             /*sh "./gsc build --insecure-args ${Docker_Image} ${manifest}"
