@@ -37,8 +37,8 @@ node {
         }else{
             def fileBase64 = input message: 'Please provide a file', parameters: [base64File('file')]
             
-            withFileParameter('test.txt') {
-                sh 'cat test.txt'
+            withFileParameter('fileBase64') {
+                sh 'cat $fileBase64'
             }
             /*withEnv(["fileBase64=$fileBase64"]) {
             //sh "cat $fileBase64 | base64 -d"
