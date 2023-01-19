@@ -52,15 +52,17 @@ node {
             //sh "$SSH az acr login -n trustupcontainerregistry "
 
             // sh “$SSH chmod -R 755 /home/davide/.jenkins/workspace/Active_choice_folder”
+
             sh "$SSH docker pull ${image}"   
-            sh "$SSH ./gsc build --insecure-args ${image} ManifestFile.manifest"
+            sh "$SSH cd /home/trustup/gsc_dado && ./gsc build --insecure-args ${image} ManifestFile.manifest && ./gsc sign-image ${image}-unsigned key.pem"
+           /* sh "$SSH ./gsc build --insecure-args ${image} ManifestFile.manifest"
             sh "$SSH openssl genrsa -3 -out key.pem 3072"
             sh "$SSH ./gsc sign-image ${image}-unsigned key.pem"
            // sh "./gsc sign-image gsc-${image}-unsigned ${key}"
             sh "$SSH docker run --device=/dev/sgx_enclave \
                     -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
                     gsc-${Docker_Image} -c ls"
-
+*/
         }
     }
 }
